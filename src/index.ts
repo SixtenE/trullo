@@ -1,10 +1,10 @@
 import express, { Response, Request, Application } from "express";
 import "dotenv/config";
 import mongoose from "mongoose";
-import seed from "./utils/seed.js";
-import userRouter from "./routes/userRoutes.js";
-import projectRouter from "./routes/projectRoutes.js";
-import taskRouter from "./routes/taskRoutes.js";
+import seed from "./utils/seed";
+import userRouter from "./routes/userRoutes";
+import projectRouter from "./routes/projectRoutes";
+import taskRouter from "./routes/taskRoutes";
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 

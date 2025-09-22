@@ -1,6 +1,6 @@
 import request from "supertest";
 import { describe, it, expect } from "vitest";
-import { app } from "../index.js";
+import { app } from "../index";
 import { faker } from "@faker-js/faker";
 
 describe("User API", () => {

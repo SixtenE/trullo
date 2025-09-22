@@ -1,8 +1,5 @@
 import { Router } from "express";
-import {
-  deleteUserById,
-  updateUserById,
-} from "../controllers/userController.js";
+import { deleteUserById, updateUserById } from "../controllers/userController";
 
 const router: Router = Router();
 

@@ -5,7 +5,7 @@ import {
   getUserProjects,
   reorderTasks,
   updateProject,
-} from "../controllers/projectController.js";
+} from "../controllers/projectController";
 
 const router: Router = Router();
 

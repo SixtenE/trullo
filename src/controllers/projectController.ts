@@ -1,7 +1,7 @@
 import z from "zod";
 
 import { Request, Response } from "express";
-import Project from "../models/Project.js";
+import Project from "../models/Project";
 
 export async function getUserProjects(req: Request, res: Response) {
   const user_id = "68c2cb004ef201a787caa23f";

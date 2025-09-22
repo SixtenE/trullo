@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
-import Project from "../models/Project.js";
-import Task from "../models/Task.js";
-import User from "../models/User.js";
+import Project from "../models/Project";
+import Task from "../models/Task";
+import User from "../models/User";
 
 export default async function seed() {
   await Promise.all([

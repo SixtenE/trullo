@@ -1,9 +1,9 @@
 import { faker } from "@faker-js/faker";
-import TaskModel from "../models/Task";
+import Task from "../models/Task";
 import User from "../models/User";
 
 export default async function seed() {
-  await Promise.all([User.deleteMany({}), TaskModel.deleteMany({})]);
+  await Promise.all([User.deleteMany({}), Task.deleteMany({})]);
 
   const users = Array.from({ length: 12 }).map(() => ({
     name: faker.person.fullName(),
@@ -22,10 +22,9 @@ export default async function seed() {
       "blocked",
       "done",
     ]),
-    assignedTo: [],
-    createdAt: faker.date.recent(),
-    finishedAt: null,
+    assignedTo:
+      Math.random() < 0.5 ? null : faker.helpers.arrayElement(createdUsers)._id,
   }));
 
-  await TaskModel.insertMany(tasks);
+  await Task.insertMany(tasks);
 }

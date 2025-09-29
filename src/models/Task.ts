@@ -15,13 +15,13 @@ const Task = mongoose.model(
       type: String,
       enum: ["to-do", "in progress", "blocked", "done"],
       required: true,
+      default: "to-do",
     },
     assignedTo: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       default: null,
     },
-
     createdAt: {
       type: Date,
       default: Date.now,

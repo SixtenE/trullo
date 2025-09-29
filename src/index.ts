@@ -12,7 +12,9 @@ const app: Application = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(process.env.DATABASE_URL as string, { dbName: "trullo" });
+mongoose.connect(process.env.DATABASE_URL as string, {
+  dbName: "trullo_sixten_ekblad",
+});
 
 app.use("/api", userRouter);
 app.use("/api", taskRouter);

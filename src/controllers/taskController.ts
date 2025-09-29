@@ -70,10 +70,24 @@ export async function updateTaskById(req: Request, res: Response) {
   }
 
   try {
-    const task = await Task.findByIdAndUpdate(id, parsedBody.data, {
-      new: true,
-      runValidators: true,
-    });
+    const task = await Task.findByIdAndUpdate(
+      id,
+      {
+        ...parsedBody.data,
+        // If status is being updated to "done", set finishedAt to current date
+        // If status is being updated to something else, set finishedAt to null
+        // If status is not being updated, leave finishedAt unchanged
+        finishedAt: parsedBody.data.status
+          ? parsedBody.data.status === "done"
+            ? new Date()
+            : null
+          : undefined,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
     if (!task) {
       return res.status(404).json({ error: "Task not found" });
     }

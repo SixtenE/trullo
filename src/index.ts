@@ -4,11 +4,13 @@ import mongoose from "mongoose";
 import seed from "./utils/seed";
 import userRouter from "./routes/userRoutes";
 import taskRouter from "./routes/taskRoutes";
+import cors from "cors";
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
 const app: Application = express();
 app.use(express.json());
+app.use(cors());
 
 mongoose.connect(process.env.DATABASE_URL as string, { dbName: "trullo" });
 

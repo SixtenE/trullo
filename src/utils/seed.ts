@@ -1,14 +1,9 @@
 import { faker } from "@faker-js/faker";
-import Project from "../models/Project";
-import Task from "../models/Task";
+import TaskModel from "../models/Task";
 import User from "../models/User";
 
 export default async function seed() {
-  await Promise.all([
-    User.deleteMany({}),
-    Task.deleteMany({}),
-    Project.deleteMany({}),
-  ]);
+  await Promise.all([User.deleteMany({}), TaskModel.deleteMany({})]);
 
   const users = Array.from({ length: 12 }).map(() => ({
     name: faker.person.fullName(),
@@ -17,18 +12,6 @@ export default async function seed() {
   }));
 
   const createdUsers = await User.insertMany(users);
-
-  const projects = Array.from({ length: 3 }).map(() => ({
-    name: faker.company.name(),
-    description: faker.company.catchPhrase(),
-    members: faker.helpers.arrayElements(
-      createdUsers.map((u) => u._id),
-      { min: 1, max: createdUsers.length }
-    ),
-    createdAt: faker.date.recent(),
-  }));
-
-  const createdProjects = await Project.insertMany(projects);
 
   const tasks = Array.from({ length: 10 }).map(() => ({
     title: faker.lorem.words(3),
@@ -39,11 +22,10 @@ export default async function seed() {
       "blocked",
       "done",
     ]),
-    assignedTo: faker.helpers.arrayElement(createdUsers.map((u) => u._id)),
+    assignedTo: [],
     createdAt: faker.date.recent(),
-    finishedAt: faker.date.future(),
-    project: faker.helpers.arrayElement(createdProjects.map((p) => p._id)),
+    finishedAt: null,
   }));
 
-  await Task.insertMany(tasks);
+  await TaskModel.insertMany(tasks);
 }

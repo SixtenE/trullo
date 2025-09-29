@@ -3,7 +3,6 @@ import "dotenv/config";
 import mongoose from "mongoose";
 import seed from "./utils/seed";
 import userRouter from "./routes/userRoutes";
-import projectRouter from "./routes/projectRoutes";
 import taskRouter from "./routes/taskRoutes";
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
@@ -14,7 +13,6 @@ app.use(express.json());
 mongoose.connect(process.env.DATABASE_URL as string, { dbName: "trullo" });
 
 app.use("/api", userRouter);
-app.use("/api", projectRouter);
 app.use("/api", taskRouter);
 
 app.get("/seed", async (req: Request, res: Response) => {

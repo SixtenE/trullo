@@ -10,8 +10,7 @@
     "dev": "nodemon",
     "build": "tsc",
     "start": "node dist/index.js",
-    "test": "vitest",
-    "lint": "pnpm dlx eslint ."
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",

@@ -3,8 +3,14 @@ import mongoose from "mongoose";
 const Task = mongoose.model(
   "Task",
   new mongoose.Schema({
-    title: { type: String, required: true },
-    description: { type: String, required: true },
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
     status: {
       type: String,
       enum: ["to-do", "in progress", "blocked", "done"],
@@ -17,8 +23,14 @@ const Task = mongoose.model(
         default: null,
       },
     ],
-    createdAt: { type: Date, default: Date.now },
-    finishedAt: { type: Date, default: null },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+    finishedAt: {
+      type: Date,
+      default: null,
+    },
   })
 );
 

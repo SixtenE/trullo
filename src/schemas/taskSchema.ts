@@ -25,4 +25,8 @@ export const CreateTaskSchema = TaskSchema.omit({
   finishedAt: true,
 });
 
-export const UpdateTaskSchema = CreateTaskSchema.partial();
+export const UpdateTaskSchema = TaskSchema.omit({
+  _id: true,
+  createdAt: true,
+  finishedAt: true,
+}).partial();

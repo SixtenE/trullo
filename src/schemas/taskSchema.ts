@@ -1,5 +1,5 @@
 import z from "zod";
-import mongoose, { isValidObjectId } from "mongoose";
+import mongoose from "mongoose";
 
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -8,13 +8,13 @@ export const TaskSchema = z.object({
   title: z.string(),
   description: z.string(),
   status: z.enum(["to-do", "in progress", "blocked", "done"]),
-  assignedTo: z
-    .array(
-      z
-        .string()
-        .refine((id) => isValidObjectId(id), { message: "Invalid ObjectId" })
-    )
-    .default([]),
+  assignedTo: z.instanceof(ObjectId).nullable(),
   createdAt: z.date().default(new Date()),
   finishedAt: z.date().nullable().default(null),
+});
+
+export const CreateTaskSchema = TaskSchema.omit({
+  _id: true,
+  createdAt: true,
+  finishedAt: true,
 });
